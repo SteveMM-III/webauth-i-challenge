@@ -4,10 +4,15 @@ module.exports = {
   add,
   find,
   findBy,
+  findByID
 };
 
 function find() {
-  return db( 'users' ).select( 'id', 'username' );
+  return db( 'users' ).select( 'id', 'username' ).orderBy( 'id' );
+}
+
+function findBy( filter ) {
+  return db( 'users' ).where( filter );
 }
 
 function add( user ) {
@@ -19,8 +24,8 @@ function add( user ) {
     } );
 }
 
-function findBy( filter ) {
-  return db( 'users'          )
-    .select( 'id', 'username' )
-    .where ( filter           );
+function findByID( id ) {
+  return db( 'users'  )
+    .where ( { id }   )
+    .first();
 }

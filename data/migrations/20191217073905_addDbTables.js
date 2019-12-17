@@ -10,15 +10,6 @@ exports.up = knex => {
     db
       .string( 'password', 128 )
       .notNullable();
-
-    db
-      .integer( 'role_id' )
-      .unsigned()
-      .notNullable()
-      .references( 'id'       )
-      .inTable   ( 'roles'    )
-      .onUpdate  ( 'CASCADE'  )
-      .onDelete  ( 'RESTRICT' );
   } );
 };
 
